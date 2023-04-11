@@ -21,13 +21,13 @@ begin
 end;
 
 begin
-  writeln ('Ingrese a');
-  read(a);
-  writeln ('Ingrese b');
-  read(b);
-  writeln ('Ingrese c');
-  read(c);
-  if(raices_segundo_grado()) then
+    writeln ('Ingrese a');
+    read(a);
+    writeln ('Ingrese b');
+    read(b);
+    writeln ('Ingrese c');
+    read(c);
+    if(raices_segundo_grado()) then
     begin
         writeln('La primera raiz es: ',raiz_1);
         writeln('La segunda raiz es: ',raiz_2);
