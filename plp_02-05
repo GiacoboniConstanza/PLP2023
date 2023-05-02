@@ -1,0 +1,142 @@
+02/05
+
+Programacion declarativa:
+	programacion logica (prolog)
+	programacion funcional (haskell)
+
+se usa swi prolog
+
+se tiene una base de conocimiento (nuestro programa)
+
+hago consultas a esa base de conocimiento
+
+constructores basicos:
+	facts (hechos)
+	rules (reglas)
+	queries (consultas)
+	
+las variables hacen unificacion, ejemplo si tengo una variable A y se unifica con 1, en todos los lugares que tenga A va a cambiarse por un 1
+
+las variables son sensibles al contexto, siempre empiezan con mayuscula o con _
+
+los atomos o terminos son un predicado (como en haskell)
+
+los atomos/constantes van en minisculo o entre " " puede llevar mayusculas
+
+los terminos llevan un nombre, parantesis, y el parametro
+P(a) --> predicado que puedo llamar
+
+no hay repetitivas, solo recursividad
+
+el lenguaje deduce logicamente el contexto
+
+----------------------------------------
+base de conocimiento
+
+Regla: (esta formada)
+
+Cabeza :- Cuerpo.	
+
+logicamente es cuerpo --> cabeza
+si es verdad el cuerpo entonces tambien lo es la cabeza
+
+se pone nada mas la cabeza cuando siempre es verdadero (hechos/facts)
+
+
+caso: a ^ b --> c
+prolog: c :- a,b.
+
+el and seria una coma
+
+caso: a v b --> c
+prolog: c :- a.
+	c :- b.
+
+se representa en 2 reglas separadas
+
+----------------------------------------
+traza playsAirGuitar(mia) - diapo 39
+
+	playsAirGuitar(mia)
+		|
+	--------------------
+	|		   |
+listen2music(mia)	   .
+	|
+   -----------------------
+   |			 |
+cuadradito 		 .
+
+
+el . significa que fallo
+
+----------------------------------------
+aridad
+
+happy/1 --> tiene un solo parametro
+
+son predicados distintos segun la cantidad de parametros
+
+----------------------------------------
+traza playsAirGuitar(b) - diapo 48
+
+	playsAirGuitar(b)
+		|
+        -------------------------
+	|	|		|
+	.    happy(b)   listens2music(b)
+		|		|
+		.	    cuadradito
+		
+----------------------------------------
+traza woman(X) - diapo 52
+consulta quienes son todas las mujeres
+
+		woman(X)
+		   |
+	-------------------------
+	|	   |		|
+     woman(m)	woman(j)     woman(y)
+     	|	   |		|
+       [_]	  [_]	       [_]
+       
+X = m;
+X = j;
+X = y;
+
+devuelve no porque se termino el arbol, mientras se siga ingresando ; entonces va a seguir buscando, cuando se le termina el arbol devuelve no
+
+----------------------------------------
+traza loves(mars,X),woman(X) - diapo 58
+
+            loves(mars,X)
+                  |
+    ---------------------------------
+    |		|	   |	    |
+    .        woman(m)	   .	    .
+       		|
+       	       [_]
+       	       
+X = m;
+
+----------------------------------------
+traza jealous(mars,W) - diapo 63
+
+jealous(mars,W) instancia por jealosus(X,Y)
+
+	loves(mars,Z),loves(W,Z)
+		|
+	-------------------------
+	|	|	|	|
+	.	Z=m;	.	.
+	    loves(W,mia)
+	    	|
+	-------------------------
+	|	|	|	|
+	W=v;	W=mars;	.	.
+	[_]	[_]
+
+
+
+
+       
